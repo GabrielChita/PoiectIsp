@@ -17,4 +17,33 @@ public class ECommerce {
 	 * 
 	 */
 	protected int numarAngajati;
+	
+	public void afisare()
+	{
+		System.out.println("Nume=" + Nume + ", numarAngajati=" + numarAngajati + ".");
+	}
+	public String getNume() {
+		return Nume;
+	}
+	public void setNume(String nume) {
+		Nume = nume;
+	}
+	public int getNumarAngajati() {
+		return numarAngajati;
+	}
+	public void setNumarAngajati(int numarAngajati) {
+		this.numarAngajati = numarAngajati;
+	}
+	
+	public ECommerce(String nume, int numarAngajati) {
+		super();
+		Nume = nume;
+		this.numarAngajati = numarAngajati;
+	}
+	public ECommerce() {
+		super();
+	}
+	
+
+	
 }
