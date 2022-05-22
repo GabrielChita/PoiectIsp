@@ -4,7 +4,10 @@
 
 package tema1_clase;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /************************************************************/
 /**
@@ -30,7 +33,91 @@ public class Emag extends ECommerce {
 	 */
 	
 
-
+	public void addItemCatalog(Produs produs,int cantitate)
+	{
+		boolean exista = false;
+		int poz = -1;
+		int cat_leng = (int)Arrays.stream(itemCatalog).filter(e -> e != null).count();
+		for(int i = 0 ; i < cat_leng ; i++) {
+			
+			if(itemCatalog[i].getProdus().getNume_produs().compareTo(produs.getNume_produs()) == 0) {
+				exista = true;
+				poz = i;
+				break;
+			}
+		}
+		if (exista == true)
+		{
+			itemCatalog[poz].crestereStoc(cantitate);
+		}
+		else 
+		{
+			
+			boolean furnizor = false;
+			int pozcat = -1;
+			int pozfurn = -1;
+			for(int i = 0 ; i < cat_leng ; i++) {
+				
+				if(itemCatalog[i].getProdus().getFurnizor().getName() .compareTo(produs.getFurnizor().getName()) == 0) {
+					furnizor = true;
+					pozfurn = i;
+					break;
+				}
+			}
+			if(furnizor == false)
+			{
+				Scanner sc = new Scanner(System.in);
+		        System.out.println("Furnizorul introdus nu exista!");
+		        System.out.println("Doriti sa adugati furnizorul ? Y/N");
+		        
+		        char c = sc.next().charAt(0);
+		        if(c == 'Y' || c == 'y')
+		        {
+		        	//Furnizor F = new Furnizor(produs.getFurnizor().getName());
+		        }
+		        else if(c == 'N' || c == 'n')
+		        {
+		        	System.out.println("Introduceti un furnzior deja existent!");
+		        	return;
+		        }
+			}
+			boolean category = false;
+			for(int i = 0 ; i < cat_leng ; i++) {
+				
+				if(itemCatalog[i].getProdus().getCategorie().getName() .compareTo(produs.getCategorie().getName()) == 0) {
+					category = true;
+					pozcat = i;
+					break;
+				}
+			}
+			if(category == false)
+			{
+				Scanner sc = new Scanner(System.in);
+		        System.out.println("Categoria introdusa nu exista!");
+		        System.out.println("Doriti sa adugati categoria? Y/N");
+		        
+		        char c = sc.next().charAt(0);
+		        if(c =='Y' || c == 'y')
+		        {
+		        	//Categorie C = new Categorie(produs.getCategorie().getName());
+		        }
+		        else
+		        {
+		        	System.out.println("Introduceti o categorie deja existenta!");
+		        	return;
+		        }
+		    
+			}
+			
+			ItemCatalog item = new ItemCatalog(cantitate,produs);
+			
+			System.out.println(cat_leng);
+			this.itemCatalog[cat_leng] = item;
+			
+		}
+			
+	}
+	
 	public Emag(String nume, int numarAngajati, Cont cont, ItemCatalog[] itemCatalog, Client[] clienti) {
 		super(nume, numarAngajati);
 		this.cont = cont;
@@ -64,7 +151,10 @@ public class Emag extends ECommerce {
 	}
 
 	public int cantitateProdus(Produs produs) {
-		for(int i = 0 ; i < itemCatalog.length ; i++) {
+
+		int cat_leng = (int)Arrays.stream(itemCatalog).filter(e -> e != null).count();
+		
+		for(int i = 0 ; i < cat_leng ; i++) {
 			
 			if(itemCatalog[i].getProdus().getNume_produs().compareTo(produs.getNume_produs()) == 0) {
 				return itemCatalog[i].getCantitate();
@@ -75,7 +165,10 @@ public class Emag extends ECommerce {
 	}
 	
 	public void modifyCantitate(Produs produs ) {
-		for(int i = 0 ; i < itemCatalog.length ; i++) {
+		
+		int cat_leng = (int)Arrays.stream(itemCatalog).filter(e -> e != null).count();
+
+		for(int i = 0 ; i < cat_leng ; i++) {
 					
 			if(itemCatalog[i].getProdus().getNume_produs().compareTo(produs.getNume_produs()) == 0) {
 				itemCatalog[i].ScadereStoc(1);
@@ -88,7 +181,9 @@ public class Emag extends ECommerce {
 	 */
 	public void afisareInventar() {
 		System.out.println("Produsele din inventar:");
-		for(int i = 0 ; i < itemCatalog.length; i++)
+		int cat_leng = (int)Arrays.stream(itemCatalog).filter(e -> e != null).count();
+
+		for(int i = 0 ; i < cat_leng; i++)
 			itemCatalog[i].afisareItemCatalog();
 	}
 

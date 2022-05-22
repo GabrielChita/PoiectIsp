@@ -87,8 +87,8 @@ public class Produs {
 		this.pret = pret;
 	}
 
-	public String getFurnizor() {
-		return furnizor.getName();
+	public Furnizor getFurnizor() {
+		return furnizor;
 	}
 
 	public void setFurnizor(Furnizor furnizor) {
