@@ -4,6 +4,8 @@
 
 package tema1_clase;
 
+import java.util.Arrays;
+
 /************************************************************/
 /**
  * 
@@ -34,30 +36,55 @@ public class Client {
 	 * 
 	 */
 	public void afisareClient() {
+		
+		System.out.println("Client [nume=" + nume + ", prenume=" + prenume + ", varsta=" + varsta + ", produs="
+				+ Arrays.toString(produs) + ", cont=" + cont + "]");
+		
 	}
+
 
 	/**
 	 * 
 	 */
-	public void totalPlata() {
+	public float totalPlata() {
+		
+		float total = 0;
+		for(int i = 0; i < produs.length; i++) {
+			
+			total += produs[i].getPret();
+		}
+		
+		return total;
 	}
 
 	/**
 	 * 
 	 */
 	public void afisareProduse() {
+		
+		for(int i = 0; i < produs.length; i++) {
+			
+			produs[i].afisareProdus();
+		}
 	}
 
 	/**
 	 * 
 	 */
 	public void finalizareComanda() {
+		
+		System.out.println("CLientul " + nume + " " + prenume + " are de platit " + totalPlata());
+		afisareProduse();
+		
+		cont.retragere(totalPlata());
 	}
 
 	/**
 	 * 
 	 */
 	public void anulareComanda() {
+		
+		System.out.println("Comanda a fost anulata!");
 	}
 
 	/**
@@ -68,4 +95,54 @@ public class Client {
 	 */
 	public void modificareDate(String nume, String prenume, int varsta) {
 	}
+
+	public Client(String nume, String prenume, int varsta, Produs[] produs, Cont cont) {
+		super();
+		this.nume = nume;
+		this.prenume = prenume;
+		this.varsta = varsta;
+		this.produs = produs;
+		this.cont = cont;
+	}
+
+	public String getNume() {
+		return nume;
+	}
+
+	public void setNume(String nume) {
+		this.nume = nume;
+	}
+
+	public String getPrenume() {
+		return prenume;
+	}
+
+	public void setPrenume(String prenume) {
+		this.prenume = prenume;
+	}
+
+	public int getVarsta() {
+		return varsta;
+	}
+
+	public void setVarsta(int varsta) {
+		this.varsta = varsta;
+	}
+
+	public Produs[] getProdus() {
+		return produs;
+	}
+
+	public void setProdus(Produs[] produs) {
+		this.produs = produs;
+	}
+
+	public Cont getCont() {
+		return cont;
+	}
+
+	public void setCont(Cont cont) {
+		this.cont = cont;
+	}
+	
 }
