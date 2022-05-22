@@ -129,6 +129,13 @@ public class Client {
 	public void modificareDate(String nume, String prenume, int varsta) {
 	}
 
+	public int nrProduse(Produs produs) {
+		
+		
+		return 0;
+	}
+
+	
 	public Client(String nume, String prenume, int varsta, Produs[] produs, Cont cont) {
 		super();
 		this.nume = nume;

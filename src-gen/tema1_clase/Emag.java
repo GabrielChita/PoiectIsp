@@ -20,19 +20,35 @@ public class Emag extends ECommerce {
 	/**
 	 * 
 	 */
-	public Client[] client;
+	public Client[] clienti;
 
 	/**
 	 * 
 	 * @param produs 
 	 */
-	public void disponibil(Produs produs) {
+	public int disponibil(Produs produs) {
+		for(int i = 0; i < itemCatalog.length; i++ ) 
+			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs()))
+				return itemCatalog[i].getCantitate();
+		
+		return 0;
+	}
+	
+	public int cantitateProdus(Produs produs) {
+		for(int i = 0 ; i < itemCatalog.length ; i++)
+			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs())) {
+				return itemCatalog[i].getCantitate();
+			}
+		return 0;
 	}
 
 	/**
 	 * 
 	 */
-	public void afisareStoc() {
+	public void afisareInventar() {
+		System.out.println("Produsele din inventar:");
+		for(int i = 0 ; i < itemCatalog.length; i++)
+			itemCatalog[i].afisareItemCatalog();
 	}
 
 	/**
@@ -46,6 +62,8 @@ public class Emag extends ECommerce {
 	 * @param client 
 	 */
 	public void anulareComandaClient(Client client) {
+		System.out.println("Comanda clientului " + client.getNume() + " " + client.getPrenume() + " a fost anulata");
+		client.setReadyCheckout(false);
 	}
 
 	/**
@@ -53,12 +71,33 @@ public class Emag extends ECommerce {
 	 * @param client 
 	 */
 	public void restituieBani(Client client) {
+		if(client.isDoneCheckout()) {
+			this.cont.retragere(client.totalPlata());
+			client.cont.adaugare(client.totalPlata());
+		} else {
+			System.out.println("Comanda clientului nu a fost inca procesata! Suma nu poate fi restituita");
+		}
 	}
 
 	/**
 	 * 
 	 * @param client 
 	 */
+	
 	public void generareFactura(Client client) {
+	}
+	
+	public void procesareComenzi() {
+		for(int i = 0 ; i < clienti.length; i++)
+			if(clienti[i].isReadyCheckout() && !clienti[i].isDoneCheckout()) {
+				int flagCantitate = 1;
+				for(int j = 0 ; j < clienti[i].getProdus().length ; j++) {
+					if(clienti[i].getProdus()[j].nrProduse(clienti[i].getProdus()[j].getNume_produs()) > )
+				}
+				if(flagCantitate == 0)
+					anulareComandaClient(clienti[i]);
+			}
+			
+		
 	}
 }
