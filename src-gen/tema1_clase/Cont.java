@@ -33,14 +33,44 @@ public class Cont {
 	/**
 	 * 
 	 */
-	public void afisare() {
+	
+	public boolean verificaredata(String Data)
+	{
+		if ( Data.length() != 4)
+			return false;
+		if( Data.substring(0,1) != "0" || Data.substring(0,1) != "1")
+			return false;
+		int an = Integer.parseInt(Data.substring(2,4));
+		int luna = Integer.parseInt(Data.substring(0,2));
+		
+		if (luna > 13)
+			return false;
+		if (an > 99)
+			return false;
+		
+		return true;
+		
 	}
-
+	public void afisare() {
+		System.out.println("Cont [IBAN=" + IBAN + ", suma=" + suma + ", activ=" + activ + ", dataExpirarii=" + dataExpirarii.substring(0, 2)+"/"+dataExpirarii.substring(2,4)+ ", CVV=" + CVV + "]");
+	}
 	/**
 	 * 
 	 * @param suma 
 	 */
 	public void retragere(float suma) {
+		if(this.activ = false)
+			{
+				System.out.println("Contul este blocat nu se poate efectua retragerea!");
+				return;
+			}
+		if(this.suma < suma )
+		{
+			System.out.println("Nu ai fonduri suficiente!");
+			return;
+		}
+		this.suma = this.suma - suma;
+		System.out.println("Suma actuala a contului este:" + this.suma);
 	}
 
 	/**
@@ -48,18 +78,99 @@ public class Cont {
 	 * @param suma 
 	 */
 	public void adaugare(float suma) {
+		if(this.activ = false)
+		{
+			System.out.println("Contul este blocat nu se poate efectua adaugarea!");
+			return;
+		}
+	
+		this.suma = this.suma + suma;
+		System.out.println("Suma actuala a contului este:" + this.suma);
 	}
 
 	/**
 	 * 
 	 */
 	public void blocare() {
+		if(this.activ = false)
+		{
+			System.out.println("Contul este deja blocat!");
+			return;
+		}
+	
+		this.setActiv(false);
 	}
-
+	
+	public void deblocare() {
+		if(this.activ = true)
+		{
+			System.out.println("Contul este deblocat!");
+			return;
+		}
+		this.setActiv(true);
+	}
 	/**
 	 * 
 	 * @param newDate 
 	 */
-	public void extindereValabiliate(String newDate) {
+	public void extindereValabiliate() {
+			int an = Integer.parseInt(this.dataExpirarii.substring(2,4));
+			an = an + 2;
+			String data2 = dataExpirarii.substring(0,2) + an;
+			this.setDataExpirarii(data2);
 	}
+	
+	public Cont(String iBAN, float suma, boolean activ, String dataExpirarii, String cVV) {
+		super();
+		IBAN = iBAN;
+		this.suma = suma;
+		this.activ = activ;
+		this.dataExpirarii = dataExpirarii;
+		CVV = cVV;
+	}
+
+	public String getIBAN() {
+		return IBAN;
+	}
+
+	public void setIBAN(String iBAN) {
+		IBAN = iBAN;
+	}
+
+	public float getSuma() {
+		return suma;
+	}
+
+	public void setSuma(float suma) {
+		this.suma = suma;
+	}
+
+	public boolean isActiv() {
+		return activ;
+	}
+
+	public void setActiv(boolean activ) {
+		this.activ = activ;
+	}
+
+	public String getDataExpirarii() {
+		return dataExpirarii;
+	}
+
+	public void setDataExpirarii(String dataExpirarii) {
+		if(verificaredata(dataExpirarii))
+			this.dataExpirarii = dataExpirarii;
+		else
+			System.out.println("Data nu este corecta!");
+	}
+
+	public String getCVV() {
+		return CVV;
+	}
+
+	public void setCVV(String cVV) {
+		CVV = cVV;
+	}
+
+	
 }
