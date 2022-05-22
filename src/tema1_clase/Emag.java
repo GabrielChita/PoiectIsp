@@ -29,17 +29,8 @@ public class Emag extends ECommerce {
 	 * @param produs 
 	 */
 	
-	
-	
-	
-	public int isDisponibil(Produs produs) {
-		for(int i = 0; i < itemCatalog.length; i++ ) 
-			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs()))
-				return itemCatalog[i].getCantitate();
-		
-		return 0;
-	}
-	
+
+
 	public Emag(String nume, int numarAngajati, Cont cont, ItemCatalog[] itemCatalog, Client[] clienti) {
 		super(nume, numarAngajati);
 		this.cont = cont;

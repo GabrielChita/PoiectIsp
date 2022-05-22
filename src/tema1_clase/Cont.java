@@ -44,7 +44,7 @@ public class Cont {
 		int an = Integer.parseInt(Data.substring(2,4));
 		int luna = Integer.parseInt(Data.substring(0,2));
 
-		if (luna > 13)
+		if (luna > 13 || luna == 0)
 			return false;
 		if (an > 99)
 			return false;
@@ -60,7 +60,7 @@ public class Cont {
 	 * @param suma 
 	 */
 	public void retragere(float suma) {
-		if(this.activ = false)
+		if(this.activ == false)
 			{
 				System.out.println("Contul este blocat nu se poate efectua retragerea!");
 				return;
@@ -79,7 +79,7 @@ public class Cont {
 	 * @param suma 
 	 */
 	public void adaugare(float suma) {
-		if(this.activ = false)
+		if(this.activ == false)
 		{
 			System.out.println("Contul este blocat nu se poate efectua adaugarea!");
 			return;
@@ -93,7 +93,7 @@ public class Cont {
 	 * 
 	 */
 	public void blocare() {
-		if(this.activ = false)
+		if(this.activ == false)
 		{
 			System.out.println("Contul este deja blocat!");
 			return;
@@ -103,7 +103,7 @@ public class Cont {
 	}
 	
 	public void deblocare() {
-		if(this.activ = true)
+		if(this.activ == true)
 		{
 			System.out.println("Contul este deblocat!");
 			return;
