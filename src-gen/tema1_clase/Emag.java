@@ -83,6 +83,7 @@ public class Emag extends ECommerce {
 	 * 
 	 * @param client 
 	 */
+	
 	public void generareFactura(Client client) {
 	}
 	
