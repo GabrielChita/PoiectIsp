@@ -61,9 +61,17 @@ public class Client {
 	
 	public void stergereProdus(Produs p) {
 		
-		List<Produs> tempList = new ArrayList<>(Arrays.asList(this.produs));
-		tempList.remove(p);
-		this.produs = tempList.toArray(new Produs[0]);
+		int poz = nrProduse;
+		for (int j = 0 ; j < nrProduse; j++)
+        {
+            if(p.getNume_produs() == produs[j].getNume_produs());
+            poz = j;
+        }
+        for(int i = poz; i < nrProduse; i++) {
+        	
+        	produs[i] = produs[i+1];
+        }
+        nrProduse--;
 		
 	}
 	
