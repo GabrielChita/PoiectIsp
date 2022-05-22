@@ -44,7 +44,6 @@ public class Cont {
 		int an = Integer.parseInt(Data.substring(2,4));
 		int luna = Integer.parseInt(Data.substring(0,2));
 
-		System.out.println(an);
 		if (luna > 13)
 			return false;
 		if (an > 99)
@@ -72,7 +71,7 @@ public class Cont {
 			return;
 		}
 		this.suma = this.suma - suma;
-		System.out.println("Suma actuala a contului este:" + this.suma);
+		System.out.println("Suma actuala a contului IBAN:" + IBAN + " este:" + this.suma);
 	}
 
 	/**
@@ -87,7 +86,7 @@ public class Cont {
 		}
 	
 		this.suma = this.suma + suma;
-		System.out.println("Suma actuala a contului este:" + this.suma);
+		System.out.println("Suma actuala a contului IBAN:" + IBAN + " este:" + this.suma);
 	}
 
 	/**

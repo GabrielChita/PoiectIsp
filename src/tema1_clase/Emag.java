@@ -4,6 +4,8 @@
 
 package tema1_clase;
 
+import java.util.Arrays;
+
 /************************************************************/
 /**
  * 
@@ -71,11 +73,23 @@ public class Emag extends ECommerce {
 	}
 
 	public int cantitateProdus(Produs produs) {
-		for(int i = 0 ; i < itemCatalog.length ; i++)
-			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs())) {
+		for(int i = 0 ; i < itemCatalog.length ; i++) {
+			
+			if(itemCatalog[i].getProdus().getNume_produs().compareTo(produs.getNume_produs()) == 0) {
 				return itemCatalog[i].getCantitate();
 			}
+		}
+			
 		return 0;
+	}
+	
+	public void modifyCantitate(Produs produs ) {
+		for(int i = 0 ; i < itemCatalog.length ; i++) {
+					
+			if(itemCatalog[i].getProdus().getNume_produs().compareTo(produs.getNume_produs()) == 0) {
+				itemCatalog[i].ScadereStoc(1);
+			}
+		}
 	}
 
 	/**
@@ -133,28 +147,40 @@ public class Emag extends ECommerce {
 	 */
 	
 	public void generareFactura(Client client) {
-		System.out.println("Client: ");
+		System.out.println();
+		System.out.println("Factura Client: ");
 		client.afisareClient();
-		System.out.println("Produse: ");
-		client.afisareProduse();
 		System.out.println("Total Plata: " + client.totalPlata());
+		System.out.println();
+	}
+	
+	public void updateInventar(Client client) {
+		int prod_len = (int)Arrays.stream(client.getProdus()).filter(e -> e != null).count();
+		for(int i = 0 ; i < prod_len ; i++) {
+			modifyCantitate(client.getProdus()[i]);	
+		}
 	}
 	
 	public void procesareComenzi() {
 		for(int i = 0 ; i < clienti.length; i++)
 			if(clienti[i].isReadyCheckout() && !clienti[i].isDoneCheckout()) {
 				int flagCantitate = 1;
-				for(int j = 0 ; j < clienti[i].getProdus().length ; j++) {
+				int prod_len = (int)Arrays.stream(clienti[i].getProdus()).filter(e -> e != null).count();
+				
+				for(int j = 0 ; j < prod_len ; j++) {
 					if(clienti[i].getNrProduse(clienti[i].getProdus()[j]) > cantitateProdus(clienti[i].getProdus()[j])) {
+						System.out.println(clienti[i].getNrProduse(clienti[i].getProdus()[j]) + "----" + cantitateProdus(clienti[i].getProdus()[j]));
+						
 						flagCantitate = 0;
 						break;
 					}
+				}
 				if(flagCantitate == 1) {
 					clienti[i].setDoneCheckout(true);
+					updateInventar(clienti[i]);
 					plataClient(clienti[i]);
 				}
-	
-				}
+				
 				if(flagCantitate == 0)
 					anulareComandaClient(clienti[i]);
 				
