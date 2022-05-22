@@ -38,11 +38,13 @@ public class Cont {
 	{
 		if ( Data.length() != 4)
 			return false;
-		if( Data.substring(0,1) != "0" || Data.substring(0,1) != "1")
+		
+		if( Integer.parseInt(Data.substring(0,1)) != 0 && Integer.parseInt(Data.substring(0,1)) != 1)
 			return false;
 		int an = Integer.parseInt(Data.substring(2,4));
 		int luna = Integer.parseInt(Data.substring(0,2));
-		
+
+		System.out.println(an);
 		if (luna > 13)
 			return false;
 		if (an > 99)
@@ -122,6 +124,18 @@ public class Cont {
 	
 	public Cont(String iBAN, float suma, boolean activ, String dataExpirarii, String cVV) {
 		super();
+		if(this.verificaredata(dataExpirarii) == false)
+			{
+				//System.out.println(dataExpirarii);
+				System.out.println("Data nu este valida!");
+				return;
+			}
+		if(suma < 0 )
+		{
+			System.out.println("Suma nu este valida!");
+			return;
+		}
+
 		IBAN = iBAN;
 		this.suma = suma;
 		this.activ = activ;
