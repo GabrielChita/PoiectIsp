@@ -4,6 +4,7 @@
 
 package tema1_clase;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /************************************************************/
@@ -26,6 +27,13 @@ public class Client {
 	/**
 	 * 
 	 */
+	
+	private int nrProduse;
+	
+	private boolean readyCheckout;
+	
+	private boolean doneCheckout;
+	
 	public Produs[] produs;
 	/**
 	 * 
@@ -42,7 +50,16 @@ public class Client {
 		
 	}
 
-
+	public void aduagareProdus(Produs P) {
+		
+		this.produs[nrProduse++] = P;
+	}
+	
+	public void stergereProdus() {
+		
+		
+	}
+	
 	/**
 	 * 
 	 */
@@ -73,10 +90,11 @@ public class Client {
 	 */
 	public void finalizareComanda() {
 		
-		System.out.println("CLientul " + nume + " " + prenume + " are de platit " + totalPlata());
+		System.out.println("CLientul " + nume + " " + prenume + " are de platit " + totalPlata() + " si este pregatit de checkout");
 		afisareProduse();
 		
-		cont.retragere(totalPlata());
+		readyCheckout = true;
+		
 	}
 
 	/**
@@ -103,10 +121,22 @@ public class Client {
 		this.varsta = varsta;
 		this.produs = produs;
 		this.cont = cont;
+		this.readyCheckout = false;
+		this.doneCheckout = false;
+		this.nrProduse = this.produs.length;
+		
 	}
 
 	public String getNume() {
 		return nume;
+	}
+
+	public int getNrProduse() {
+		return nrProduse;
+	}
+
+	public void setNrProduse(int nrProduse) {
+		this.nrProduse = nrProduse;
 	}
 
 	public void setNume(String nume) {
@@ -143,6 +173,22 @@ public class Client {
 
 	public void setCont(Cont cont) {
 		this.cont = cont;
+	}
+
+	public boolean isReadyCheckout() {
+		return readyCheckout;
+	}
+
+	public void setReadyCheckout(boolean readyCheckout) {
+		this.readyCheckout = readyCheckout;
+	}
+
+	public boolean isDoneCheckout() {
+		return doneCheckout;
+	}
+
+	public void setDoneCheckout(boolean doneCheckout) {
+		this.doneCheckout = doneCheckout;
 	}
 	
 }
