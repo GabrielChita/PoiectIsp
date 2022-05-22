@@ -22,5 +22,5 @@ public enum Categorie {
 	 */
 	Sport;
 	
-	// ROBERT !! ! ! !
+
 }
