@@ -10,8 +10,8 @@ public class Aplicatie {
 		
 		Produs p1 = new Produs("Mar", 10, "Furnizor", 5, Categorie.Electrocasnice, "FRuct");
 		Produs p2 = new Produs("Para", 11, "Furnizor2", 5, Categorie.Electrocasnice, "Altceva");
-		Cont c = new Cont("123", 100.5F, true, "2510", "111");
-		Cont c2 = new Cont("111", 1000.5F, true, "2510", "112");
+		Cont c = new Cont("123", 100.5F, true, "1025", "111");
+		Cont c2 = new Cont("111", 1000.5F, true, "1034", "112");
 		Produs[] produse = new Produs[10];
 		
 		Client cl = new Client("nume", "prenume", 55, produse, c);
