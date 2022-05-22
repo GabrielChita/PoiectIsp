@@ -4,8 +4,12 @@
 
 package tema1_clase;
 
+import java.lang.Object;
+
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /************************************************************/
 /**
@@ -55,8 +59,11 @@ public class Client {
 		this.produs[nrProduse++] = P;
 	}
 	
-	public void stergereProdus() {
+	public void stergereProdus(Produs p) {
 		
+		List<Produs> tempList = new ArrayList<>(Arrays.asList(this.produs));
+		tempList.remove(p);
+		this.produs = tempList.toArray(new Produs[0]);
 		
 	}
 	
