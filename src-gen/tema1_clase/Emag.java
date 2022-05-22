@@ -55,6 +55,12 @@ public class Emag extends ECommerce {
 	 * 
 	 */
 	public void afisareVenit() {
+		float total = 0;
+		for(int i = 0 ; i < clienti.length; i++)
+			if(clienti[i].isReadyCheckout() && clienti[i].isDoneCheckout()) {
+				total += clienti[i].totalPlata();
+			}
+		System.out.println("Venitul Emag-ului: " + total);
 	}
 
 	/**
@@ -78,6 +84,12 @@ public class Emag extends ECommerce {
 			System.out.println("Comanda clientului nu a fost inca procesata! Suma nu poate fi restituita");
 		}
 	}
+	
+	public void plataClient(Client client) {
+		client.cont.retragere(client.totalPlata());
+		this.cont.adaugare(client.totalPlata());
+		generareFactura(client);
+	}
 
 	/**
 	 * 
@@ -85,6 +97,11 @@ public class Emag extends ECommerce {
 	 */
 	
 	public void generareFactura(Client client) {
+		System.out.println("Client: ");
+		client.afisareClient();
+		System.out.println("Produse: ");
+		client.afisareProduse();
+		System.out.println("Total Plata: " + client.totalPlata());
 	}
 	
 	public void procesareComenzi() {
@@ -92,10 +109,21 @@ public class Emag extends ECommerce {
 			if(clienti[i].isReadyCheckout() && !clienti[i].isDoneCheckout()) {
 				int flagCantitate = 1;
 				for(int j = 0 ; j < clienti[i].getProdus().length ; j++) {
-					if(clienti[i].getProdus()[j].nrProduse(clienti[i].getProdus()[j].getNume_produs()) > )
+					if(clienti[i].getNrProduse(clienti[i].getProdus()[j]) > cantitateProdus(clienti[i].getProdus()[j])) {
+						flagCantitate = 0;
+						break;
+					}
+				if(flagCantitate == 1) {
+					clienti[i].setDoneCheckout(true);
+					plataClient(clienti[i]);
+				}
+					
+					
 				}
 				if(flagCantitate == 0)
 					anulareComandaClient(clienti[i]);
+				
+					
 			}
 			
 		
