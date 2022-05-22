@@ -116,6 +116,8 @@ public class Client {
 	 * 
 	 */
 	public void anulareComanda() {
+		if(this.readyCheckout)
+			this.readyCheckout = false;
 		
 		System.out.println("Comanda a fost anulata!");
 	}
