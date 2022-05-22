@@ -44,7 +44,7 @@ public class Cont {
 		int an = Integer.parseInt(Data.substring(2,4));
 		int luna = Integer.parseInt(Data.substring(0,2));
 
-		if (luna > 13 || luna == 0)
+		if (luna >= 13 || luna == 0)
 			return false;
 		if (an > 99)
 			return false;
