@@ -129,10 +129,17 @@ public class Client {
 	public void modificareDate(String nume, String prenume, int varsta) {
 	}
 
-	public int nrProduse(Produs produs) {
+	public int getNrProduse(Produs p) {
 		
+		int total = 0;
 		
-		return 0;
+		for(int i = 0; i < nrProduse; i++) {
+			
+			if(this.produs[i].getNume_produs() == p.getNume_produs())
+				total++;
+		}
+		
+		return total;
 	}
 
 	
