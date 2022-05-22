@@ -30,7 +30,7 @@ public class Emag extends ECommerce {
 	
 	
 	
-	public int disponibil(Produs produs) {
+	public int isDisponibil(Produs produs) {
 		for(int i = 0; i < itemCatalog.length; i++ ) 
 			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs()))
 				return itemCatalog[i].getCantitate();

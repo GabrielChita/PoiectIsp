@@ -35,7 +35,8 @@ public class ItemCatalog {
 	}
 	
 	public void afisareItemCatalog() {
-		System.out.println("ItemCatalog [cantitate=" + cantitate + ", produs=" + produs + "]");
+		System.out.println("ItemCatalog [cantitate=" + cantitate + "]");
+		produs.afisareProdus();
 	}
 
 	public ItemCatalog(int cantitate, Produs produs) {

@@ -67,7 +67,6 @@ public class Client {
         {
             if(p.getNume_produs() == produs[j].getNume_produs()) {
             	poz = j;
-                System.out.println(poz);
             }
             	
         }
