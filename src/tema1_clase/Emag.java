@@ -26,6 +26,10 @@ public class Emag extends ECommerce {
 	 * 
 	 * @param produs 
 	 */
+	
+	
+	
+	
 	public int disponibil(Produs produs) {
 		for(int i = 0; i < itemCatalog.length; i++ ) 
 			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs()))
@@ -34,6 +38,38 @@ public class Emag extends ECommerce {
 		return 0;
 	}
 	
+	public Emag(String nume, int numarAngajati, Cont cont, ItemCatalog[] itemCatalog, Client[] clienti) {
+		super(nume, numarAngajati);
+		this.cont = cont;
+		this.itemCatalog = itemCatalog;
+		this.clienti = clienti;
+	}
+	
+
+	public Cont getCont() {
+		return cont;
+	}
+
+	public void setCont(Cont cont) {
+		this.cont = cont;
+	}
+
+	public ItemCatalog[] getItemCatalog() {
+		return itemCatalog;
+	}
+
+	public void setItemCatalog(ItemCatalog[] itemCatalog) {
+		this.itemCatalog = itemCatalog;
+	}
+
+	public Client[] getClienti() {
+		return clienti;
+	}
+
+	public void setClienti(Client[] clienti) {
+		this.clienti = clienti;
+	}
+
 	public int cantitateProdus(Produs produs) {
 		for(int i = 0 ; i < itemCatalog.length ; i++)
 			if(itemCatalog[i].getProdus().getNume_produs().equalsIgnoreCase(produs.getNume_produs())) {
@@ -117,8 +153,7 @@ public class Emag extends ECommerce {
 					clienti[i].setDoneCheckout(true);
 					plataClient(clienti[i]);
 				}
-					
-					
+	
 				}
 				if(flagCantitate == 0)
 					anulareComandaClient(clienti[i]);

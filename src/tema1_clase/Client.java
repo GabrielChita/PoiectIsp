@@ -49,8 +49,9 @@ public class Client {
 	 */
 	public void afisareClient() {
 		
-		System.out.println("Client [nume=" + nume + ", prenume=" + prenume + ", varsta=" + varsta + ", produs="
-				+ Arrays.toString(produs) + ", cont=" + cont + "]");
+		System.out.println("Client [nume=" + nume + ", prenume=" + prenume + ", varsta=" + varsta + "]");
+		cont.afisare();
+		afisareProduse();
 		
 	}
 
@@ -61,13 +62,19 @@ public class Client {
 	
 	public void stergereProdus(Produs p) {
 		
-		int poz = nrProduse;
+		int poz = -1;
 		for (int j = 0 ; j < nrProduse; j++)
         {
-            if(p.getNume_produs() == produs[j].getNume_produs());
-            poz = j;
+            if(p.getNume_produs() == produs[j].getNume_produs()) {
+            	poz = j;
+                System.out.println(poz);
+            }
+            	
         }
-        for(int i = poz; i < nrProduse; i++) {
+		if(poz == -1)
+			return;
+		
+		for(int i = poz; i < nrProduse -1; i++) {
         	
         	produs[i] = produs[i+1];
         }
@@ -81,7 +88,7 @@ public class Client {
 	public float totalPlata() {
 		
 		float total = 0;
-		for(int i = 0; i < produs.length; i++) {
+		for(int i = 0; i < nrProduse; i++) {
 			
 			total += produs[i].getPret();
 		}
@@ -94,7 +101,7 @@ public class Client {
 	 */
 	public void afisareProduse() {
 		
-		for(int i = 0; i < produs.length; i++) {
+		for(int i = 0; i < nrProduse; i++) {
 			
 			produs[i].afisareProdus();
 		}
@@ -154,7 +161,7 @@ public class Client {
 		this.cont = cont;
 		this.readyCheckout = false;
 		this.doneCheckout = false;
-		this.nrProduse = this.produs.length;
+		this.nrProduse = 0;
 		
 	}
 
