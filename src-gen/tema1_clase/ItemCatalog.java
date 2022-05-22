@@ -23,6 +23,7 @@ public class ItemCatalog {
 	 * @param cantitate 
 	 */
 	public void ScadereStoc(int cantitate) {
+		this.cantitate = this.cantitate - cantitate;
 	}
 
 	/**
@@ -30,5 +31,34 @@ public class ItemCatalog {
 	 * @param catitate 
 	 */
 	public void crestereStoc(int catitate) {
+		this.cantitate = this.cantitate + cantitate;
 	}
+	
+	public void afisareItemCatalog() {
+		System.out.println("ItemCatalog [cantitate=" + cantitate + ", produs=" + produs + "]");
+	}
+
+	public ItemCatalog(int cantitate, Produs produs) {
+		super();
+		this.cantitate = cantitate;
+		this.produs = produs;
+	}
+
+	public int getCantitate() {
+		return cantitate;
+	}
+
+	public void setCantitate(int cantitate) {
+		this.cantitate = cantitate;
+	}
+
+	public Produs getProdus() {
+		return produs;
+	}
+
+	public void setProdus(Produs produs) {
+		this.produs = produs;
+	}
+
+	
 }
