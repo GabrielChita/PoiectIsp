@@ -1,7 +1,7 @@
 package tema1_clase;
 
-public class Categorie {
-	private String name;
+public class Furnizor {
+	String name;
 
 	public String getName() {
 		return name;
@@ -11,7 +11,7 @@ public class Categorie {
 		this.name = name;
 	}
 
-	public Categorie(String name) {
+	public Furnizor(String name) {
 		super();
 		this.name = name;
 	}

@@ -7,9 +7,11 @@ public class Aplicatie {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		Categorie cat1 = new Categorie("Electrocasnice");
+		Furnizor f1 = new Furnizor("Furnizor1");
 		
-		Produs p1 = new Produs("Mar", 10, "Furnizor", 5, Categorie.Electrocasnice, "FRuct");
-		Produs p2 = new Produs("Para", 11, "Furnizor2", 5, Categorie.Electrocasnice, "Altceva");
+		Produs p1 = new Produs("Mar", 10, f1, 5, cat1, "FRuct");
+		Produs p2 = new Produs("Para", 11, f1, 5, cat1, "Altceva");
 		Cont c = new Cont("123", 100.5F, true, "1025", "111");
 		Cont c_client2 = new Cont("124", 100.5F, true, "1025", "111");
 		Cont c2 = new Cont("111", 1000.5F, true, "1034", "112");

@@ -20,7 +20,7 @@ public class Produs {
 	/** 
 	 * 
 	 */
-	private String furnizor;
+	private Furnizor furnizor;
 	/**
 	 * 
 	 */
@@ -38,8 +38,8 @@ public class Produs {
 	 * 
 	 */
 	public void afisareProdus() {
-		System.out.println("Produs [nume_produs=" + nume_produs + ", pret=" + pret + ", furnizor=" + furnizor + ", rating=" + rating
-				+ ", categorie=" + categorie + ", descriere=" + descriere + "]");
+		System.out.println("Produs [nume_produs=" + nume_produs + ", pret=" + pret + ", furnizor=" + furnizor.getName() + ", rating=" + rating
+				+ ", categorie=" + categorie.getName() + ", descriere=" + descriere + "]");
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class Produs {
 		pret = pret + pret * procent;
 	}
 	
-	public Produs(String nume_produs, float pret, String furnizor, float rating, Categorie categorie,
+	public Produs(String nume_produs, float pret, Furnizor furnizor, float rating, Categorie categorie,
 			String descriere) {
 		super();
 		this.nume_produs = nume_produs;
@@ -88,10 +88,10 @@ public class Produs {
 	}
 
 	public String getFurnizor() {
-		return furnizor;
+		return furnizor.getName();
 	}
 
-	public void setFurnizor(String furnizor) {
+	public void setFurnizor(Furnizor furnizor) {
 		this.furnizor = furnizor;
 	}
 
